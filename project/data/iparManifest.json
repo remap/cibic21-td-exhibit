@@ -1,0 +1,283 @@
+{
+    "Output": {
+        "Outputsize": {
+            "name": "Outputsize",
+            "label": "Output Size",
+            "page": "Output",
+            "style": "WH",
+            "default": 0.0,
+            "enable": true,
+            "startSection": false,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": "",
+            "min": 0.0,
+            "max": 1.0,
+            "normMin": 0.0,
+            "normMax": 1.0,
+            "clampMin": false,
+            "clampMax": false
+        },
+        "Linecolor": {
+            "name": "Linecolor",
+            "label": "Line Color",
+            "page": "Output",
+            "style": "Menu",
+            "default": "0",
+            "enable": true,
+            "startSection": false,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": "",
+            "menuNames": [
+                "0",
+                "1"
+            ],
+            "menuLabels": [
+                "Color Blind Safe",
+                "Vibrant"
+            ]
+        },
+        "Mapstyle": {
+            "name": "Mapstyle",
+            "label": "Map Style",
+            "page": "Output",
+            "style": "Menu",
+            "default": "mapbox://styles/cibic-mapbox/cl8269n1l002914o8890b24z4",
+            "enable": true,
+            "startSection": false,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": "",
+            "menuNames": [
+                "mapbox://styles/cibic-mapbox/cl8269n1l002914o8890b24z4",
+                "mapbox://styles/cibic-mapbox/cl8265z24000214mooehh9my5"
+            ],
+            "menuLabels": [
+                "Day",
+                "Night"
+            ]
+        },
+        "Location": {
+            "name": "Location",
+            "label": "Location",
+            "page": "Output",
+            "style": "Menu",
+            "default": "LA",
+            "enable": true,
+            "startSection": true,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": "",
+            "menuNames": [
+                "LA",
+                "BA"
+            ],
+            "menuLabels": [
+                "LA",
+                "BA"
+            ]
+        },
+        "Selectedview": {
+            "name": "Selectedview",
+            "label": "Selected View",
+            "page": "Output",
+            "style": "Menu",
+            "default": "Map",
+            "enable": true,
+            "startSection": false,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": "",
+            "menuNames": [
+                "Map",
+                "Abstract"
+            ],
+            "menuLabels": [
+                "Map",
+                "Abstract"
+            ]
+        },
+        "Previousdaysofdata": {
+            "name": "Previousdaysofdata",
+            "label": "Previous Days of Data",
+            "page": "Output",
+            "style": "Int",
+            "size": 1,
+            "default": 30,
+            "enable": true,
+            "startSection": true,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": "",
+            "min": 0.0,
+            "max": 1.0,
+            "normMin": 1.0,
+            "normMax": 360.0,
+            "clampMin": false,
+            "clampMax": false
+        },
+        "Quitproject": {
+            "name": "Quitproject",
+            "label": "Quit Project",
+            "page": "Output",
+            "style": "Pulse",
+            "default": false,
+            "enable": true,
+            "startSection": true,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": ""
+        }
+    },
+    "Profile": {
+        "Projectprofile": {
+            "name": "Projectprofile",
+            "label": "Project Profile",
+            "page": "Profile",
+            "style": "File",
+            "default": "",
+            "enable": true,
+            "startSection": true,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": ""
+        },
+        "Loadprojectprofile": {
+            "name": "Loadprojectprofile",
+            "label": "Load Project Profile",
+            "page": "Profile",
+            "style": "Pulse",
+            "default": false,
+            "enable": true,
+            "startSection": false,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": ""
+        },
+        "Saveprojectprofile": {
+            "name": "Saveprojectprofile",
+            "label": "Save Project Profile",
+            "page": "Profile",
+            "style": "Pulse",
+            "default": false,
+            "enable": true,
+            "startSection": false,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": ""
+        }
+    },
+    "About": {
+        "Ipaddress": {
+            "name": "Ipaddress",
+            "label": "IP Address",
+            "page": "About",
+            "style": "Str",
+            "default": "0",
+            "enable": true,
+            "startSection": true,
+            "readOnly": true,
+            "enableExpr": null,
+            "help": ""
+        },
+        "Machinename": {
+            "name": "Machinename",
+            "label": "Machine Name",
+            "page": "About",
+            "style": "Str",
+            "default": "",
+            "enable": true,
+            "startSection": false,
+            "readOnly": true,
+            "enableExpr": null,
+            "help": ""
+        },
+        "Rootpath": {
+            "name": "Rootpath",
+            "label": "Root Path",
+            "page": "About",
+            "style": "Folder",
+            "default": "",
+            "enable": true,
+            "startSection": true,
+            "readOnly": true,
+            "enableExpr": null,
+            "help": ""
+        },
+        "Mediaassets": {
+            "name": "Mediaassets",
+            "label": "Media Assets",
+            "page": "About",
+            "style": "Folder",
+            "default": "",
+            "enable": true,
+            "startSection": false,
+            "readOnly": true,
+            "enableExpr": null,
+            "help": ""
+        }
+    },
+    "Cloud": {
+        "Cloudrendering": {
+            "name": "Cloudrendering",
+            "label": "Cloud Rendering",
+            "page": "Cloud",
+            "style": "Toggle",
+            "default": false,
+            "enable": true,
+            "startSection": false,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": ""
+        },
+        "Cachedirectory": {
+            "name": "Cachedirectory",
+            "label": "Cache Directory",
+            "page": "Cloud",
+            "style": "Folder",
+            "default": "",
+            "enable": true,
+            "startSection": true,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": ""
+        },
+        "Outputdirectory": {
+            "name": "Outputdirectory",
+            "label": "Output Directory",
+            "page": "Cloud",
+            "style": "Folder",
+            "default": "",
+            "enable": true,
+            "startSection": false,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": ""
+        },
+        "Render": {
+            "name": "Render",
+            "label": "Render",
+            "page": "Cloud",
+            "style": "Pulse",
+            "default": false,
+            "enable": true,
+            "startSection": true,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": ""
+        },
+        "Active": {
+            "name": "Active",
+            "label": "Active",
+            "page": "Cloud",
+            "style": "Toggle",
+            "default": false,
+            "enable": true,
+            "startSection": false,
+            "readOnly": true,
+            "enableExpr": null,
+            "help": ""
+        }
+    }
+}

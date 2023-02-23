@@ -1,0 +1,15 @@
+# import cache
+porject/TDImportCache/*
+project/TDImportCache/
+project/video-assets/*
+builds/*
+project/_public/log/
+project/_public/python-libs/
+project/_toe-builds/
+*.pyc
+_outputs/
+project/_exports/*.jpg
+secrets.py
+project/_exports/img_cache/
+
+project/td-python/CibicObjects/secrets.py
