@@ -1,0 +1,2 @@
+Helper to commit and load parameter changes made to ipar settings. This is saved and loaded from:
+`data\iparManifest.json` 

@@ -1,0 +1,25 @@
+Contains quick access rider data.
+
+Shows a table generated from all ride data. This contains headers that include:
+- ride date
+- ride id
+- user id
+- ride region
+- flow name | None if there is no flow name associated
+- pod name | None if there is no pod associated with the ride
+- pod id | None if there is no pod associated with the ride
+- journal status
+- satisfaction response | - if there is no response
+- free response text | - if there is no response 
+
+lister_all_rides
+
+This lister shows all rides currently available to the system.
+
+
+lister_current_rides
+
+This lister shows all rides currently displayed by the system. This shows only rides that meet the following conditions:
+- have user ids
+- are in a flow
+- have associated journals

@@ -1,0 +1,4 @@
+This is a cache of all rider journaled images. 
+This is filled with:
+
+op.PROCESS.Load_rider_media()

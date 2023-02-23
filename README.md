@@ -8,7 +8,9 @@
 |Zoe Sandoval | @radialbalance
 
 ## Project Dependencies
-
+[TouchDesigner 2022.31030](https://download.derivative.ca/TouchDesigner.2022.31030.exe)
+[MapBox TD - hosted by UCLA](https://github.com/remap/cibic21-mapbox-td)
+[Python 3.9](https://www.python.org/downloads/release/python-390/)
 
 ## About CiBiC
 CiBiC is an experimental transportation research project to encourage group bike commuting among residents of the Northeast LA neighborhoods of Chinatown, Solano Canyon, Lincoln Heights, Cypress Park, William Mead Homes, and adjacent areas. 
