@@ -1,0 +1,80 @@
+[
+    {
+    "isImg" : true,
+    "isVideo" : false,
+    "delay" : 120,
+    "info" : {
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1
+            },
+        "recent" : true,
+        "renderFrame" : 0
+        }
+    },
+    {
+    "isImg" : true,
+    "isVideo" : false,
+    "delay" : 120,
+    "info" : {
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1
+            },
+        "recent" : false,
+        "renderFrame" : 0
+    }
+    },
+    {
+    "isImg" : false,
+    "isVideo" : true,
+    "delay" : 120,
+    "info" : {
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1
+            },
+        "recent" : true,
+        "renderFrame" : 0
+    }
+    },
+    {
+    "isImg" : true,
+    "isVideo" : false,
+    "delay" : 120,
+    "info" : {
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1
+            },
+        "recent" : true,
+        "renderFrame" : 0
+    }
+    },
+    {
+    "isImg" : true,
+    "isVideo" : false,
+    "delay" : 120,
+    "info" : {
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1
+            },
+        "recent" : false,
+        "renderFrame" : 0
+    }
+    },
+    {
+    "isImg" : false,
+    "isVideo" : true,
+    "delay" : 120,
+    "info" : {
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1
+            },
+        "recent" : true,
+        "renderFrame" : 0
+    }
+    }
+]

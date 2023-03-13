@@ -35,9 +35,9 @@ class Project:
         "Targetlatlng2" : -118.222
     }
     BA_MAPBOX = {
-        "Targetzoom" : 12.5,
-        "Targetlatlng1" : -34.64305,
-        "Targetlatlng2" : -58.40604
+        "Targetzoom" : 14.5,
+        "Targetlatlng1" : -34.61805,
+        "Targetlatlng2" : -58.41304
     }
 
     MAPBOX_PAR_MAP = {

@@ -36,7 +36,7 @@ def make_thumbnail(image_path, output_dir, output_name):
 	try:
 		im = Image.open(image_path)
 		im = ImageOps.exif_transpose(im)
-		size = (400,400)
+		size = (1080,1080)
 		im.thumbnail(size)
 		im.save(output_dir+output_name, "JPEG")
 		return output_name
@@ -98,57 +98,72 @@ for ride in windowed_rides:
 
 print(len(all_geoJSON))
 
-all_photos = []
-for ride in windowed_rides:
+all_la_photos = []
+all_ba_photos = []
+
+for ride in all_rides:
 	if ride.journaled_data is not None:
 		if ride.journaled_data.media is not None:
-			all_photos.append(ride.journaled_data.media)
-
-print(len(all_photos))
-
-
-
-
+			print(ride.region)
+			if ride.region == "Los Angeles":
+				all_la_photos.append(ride.journaled_data.media)	
+			if ride.region == "Buenos Aires":
+				all_ba_photos.append(ride.journaled_data.media)		
 
 
-photo_urls = sum(all_photos, [])
+la_photo_urls = sum(all_la_photos, [])
+la_photo_names = [get_name(filename) for filename in la_photo_urls]
+la_photo_hash_names = [hash_name(filename) for filename in la_photo_names]
+la_photos_for_viz = []
 
-photo_names = [get_name(filename) for filename in photo_urls]
-photo_hash_names = [hash_name(filename) for filename in photo_names]
-
-
-
-photos_for_viz = []
-
-for idx, photo_hash in enumerate(photo_names):
+for idx, photo_hash in enumerate(la_photo_names):
 	image_path = process_folder+photo_hash
 	if os.path.exists(image_path):
-		print("photo already cached")
-		photos_for_viz.append( make_thumbnail(image_path, output_folder+"/photos/", photo_hash_names[idx]+".jpg") )
+		la_photos_for_viz.append( make_thumbnail(image_path, output_folder+"/photos/", la_photo_hash_names[idx]+".jpg") )
 		continue
 
-	url = photo_urls[idx]
+	url = la_photo_urls[idx]
 	img_data = requests.get(url).content
 	with open(image_path, 'wb') as handler:
 		handler.write(img_data)
 	
-	photos_for_viz.append(  make_thumbnail(image_path, output_folder+"/photos/", photo_hash_names[idx]+".jpg") )
+	la_photos_for_viz.append(  make_thumbnail(image_path, output_folder+"/photos/", la_photo_hash_names[idx]+".jpg") )
+
+
+ba_photo_urls = sum(all_ba_photos, [])
+ba_photo_names = [get_name(filename) for filename in ba_photo_urls]
+ba_photo_hash_names = [hash_name(filename) for filename in ba_photo_names]
+ba_photos_for_viz = []
+
+for idx, photo_hash in enumerate(ba_photo_names):
+	image_path = process_folder+photo_hash
+	if os.path.exists(image_path):
+		ba_photos_for_viz.append( make_thumbnail(image_path, output_folder+"/photos/", ba_photo_hash_names[idx]+".jpg") )
+		continue
+
+	url = ba_photo_urls[idx]
+	img_data = requests.get(url).content
+	with open(image_path, 'wb') as handler:
+		handler.write(img_data)
 	
+	ba_photos_for_viz.append(  make_thumbnail(image_path, output_folder+"/photos/", ba_photo_hash_names[idx]+".jpg") )
 
 
 
 
-photos_for_viz = [i for i in photos_for_viz if i is not None]
-print(photos_for_viz)
+la_photos_for_viz = [i for i in la_photos_for_viz if i is not None][-30:]
+ba_photos_for_viz = [i for i in ba_photos_for_viz if i is not None][-30:]
 
 
 
 
-with open(output_folder+"data/gallery.json", 'w') as f:
+with open(output_folder+"data/LA-gallery.json", 'w') as f:
 	
-	f.write(json.dumps(photos_for_viz))
+	f.write(json.dumps(la_photos_for_viz))
 
-
+with open(output_folder+"data/BA-gallery.json", 'w') as f:
+	
+	f.write(json.dumps(ba_photos_for_viz))
 
 with open(output_folder+"data/web_viz.json", 'w') as f:
 	

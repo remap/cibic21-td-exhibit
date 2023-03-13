@@ -8,12 +8,16 @@ import logging
 import Lookup
 
 import CibicObjects
+import json
 
 class Data(CibicObjects.data_controller.DataController):
 	"""Data
 
 	The Data class is responsible for...
 	"""
+
+	RENDER_JOBS = Lookup.DATA.op('text_render_jobs').text
+	
 	def __init__(self, myOp):
 		super().__init__()
 		self.My_op = myOp
@@ -23,6 +27,10 @@ class Data(CibicObjects.data_controller.DataController):
 		self.My_op.unstore("*")
 		self.Read_from_caches()
 		logging.info(f'DATA 🧮 | Touch_start()')
+
+	def Get_render_jobs(self) -> None:
+		j_data = json.loads(Data.RENDER_JOBS)
+		return j_data
 
 	def Read_from_caches(self):
 		cache_directory = ipar.Settings.Cachedirectory.eval()

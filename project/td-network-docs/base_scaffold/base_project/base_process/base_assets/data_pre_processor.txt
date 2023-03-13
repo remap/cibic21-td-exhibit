@@ -1,0 +1,3 @@
+Data pre-processing. These components fetch all data necessary for LA and BA regions. These act as clones of `base_ride_processing`. Correct processing relies on the custom parameter `Location` this is used as a key to fetch correctly parse rides by region.
+
+Ops to the right of the pre-processors will select from the corresponding base based on the Location parameter in ipar.Settings. DATs use a similar mechanic, and all DAT table construction is done as a pre-processing operation

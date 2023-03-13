@@ -54,6 +54,9 @@ if %CLOUDRENDERING%==True (
 	echo Running live mode...
 	rem we are rendering live. Run the project normally...
 
+	echo Running pre-render scripts...
+	start /W /B CMD /c %~dp0td-aws-sync-scripts/bucket-sync.cmd
+
 	rem start our project file with the target TD installation
 	start "" %RUNCOMMAND%
 )

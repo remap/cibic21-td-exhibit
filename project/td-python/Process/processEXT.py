@@ -10,6 +10,8 @@ import CibicCart
 from datetime import datetime, timezone, timedelta
 import SudoMagic as smTools
 import os
+import random
+import cloudRenderMOD
 
 # i surrender
 from CibicObjects import cibic_objects
@@ -31,6 +33,7 @@ class Process:
     COLOR_JOURNAL_LOOKUP = Lookup.PROCESS.op('base_assets/null_color_journal_lookup')
     RIDE_SIZE = 0
 
+    CAMERA_TIMER = Lookup.PROCESS.op('base_map_abstract_view/timer1')
     AWS_OUTPUT_TOP = Lookup.PROCESS.op('base_compositor/moviefileout_viz')
     MAPBOX_COMP = Lookup.PROCESS.op('base_mapbox/MapboxTD')
 
@@ -42,6 +45,7 @@ class Process:
     def __init__(self, myOp):
         self.My_op = myOp
         self._set_rides_coordinate_width(Lookup.DATA.Rides)
+        self.CloudRenderManager = None
         logging.info(f"PROCESS 🏭 | Process Init")
 
     def Touch_start(self):
@@ -50,7 +54,7 @@ class Process:
         logging.info(f"PROCESS 🏭 | Process Touch_start")
 
         # download remote media and cache locally
-        self.Download_remote_media()
+        # self.Download_remote_media()
 
     def Set_output_map_target(self, city:str) -> None:
         """Sets Mapbox pars to defaults specified in the Project Class
@@ -73,7 +77,7 @@ class Process:
     def Load_rider_media(self) -> None:
         rider_media_mov_buffer = self.My_op.op('base_assets/moviefilein_rider_media')
         rider_media_cache = self.My_op.op('base_assets/tex3d_rider_media')
-        media_cache = f"{project.folder}/_exports/img_cache"
+        media_cache = f"{project.folder}/_outputs/photos"
         media_files = os.listdir(media_cache)
 
         rider_media_cache.par.cachesize = len(media_files) - 1
@@ -104,35 +108,68 @@ class Process:
                             remote_paths.append(each_media_item)
         return remote_paths
 
+    def Media_random_loc(self):
+        rides = Lookup.DATA.Rides
+        remote_paths = []
+        img_coords = []
+        video_ext = ['mov', 'MOV']
+
+        for each_ride in rides:
+            each_ride:cibic_objects.Ride
+            journal = each_ride.journaled_data
+            if journal != None:
+                media = journal.media
+                
+                if media != None:
+                    ride_path = each_ride.Geo_JSON_Path_Coords
+                    rand_index = random.randint(0, len(ride_path)-1)
+
+                    for each_media_item in media:
+                        file_ext = each_media_item[-3:]
+                        if file_ext in video_ext:
+                            pass
+                        else:
+                            rand_coord = ride_path[rand_index]
+                            img_coords.append(rand_coord)
+
+        return img_coords
+
     # NOTE - Image Output
     def Run_cloud_render_process(self) -> None:
-        """
-        """
-        delay_seconds = 5
-        Lookup.PROCESS.op("base_mapbox").cook(force=True, recurse=True)
+        '''
+        '''
+        # turn off realtime
+        project.realTime = False
 
-        delay_args = [
-            [0, 1, True],
-            [0, 1, False],
-            [1, 1, True],
-            [1, 1, False]
-        ]
-
-        delay_script = 'args[0]._render_view(args[1], args[2], args[3])'
-
+        # toggle active flag
         ipar.Settings.Active = True
 
-        for index, each in enumerate(delay_args):
-            delay_frames = (delay_seconds * 60) * (index + 1)
-            run(delay_script, self, each[0], each[1], each[2], delayFrames=delay_frames)
+        # force cook mapbox
+        Lookup.PROCESS.op("base_mapbox").cook(force=True, recurse=True)
 
-        delay_active_complete = "args[0]._cloud_render_complete()"
-        run(delay_active_complete, self, delayFrames = (delay_seconds * 60) * (len(delay_args)+1))
+        # generate render jobs and start render stack
+        render_jobs = Lookup.DATA.Get_render_jobs()
+        self.CloudRenderManager = cloudRenderMOD.renderManager(job_list=render_jobs)
+        self.CloudRenderManager.advance()
+    
+    def Video_render_timer_cycle(self, timerOp:OP) -> None:
+        if ipar.Settings.Active:
+            # we're currently running a render job
+            current_worker:cloudRenderMOD.renderWorker = self.CloudRenderManager.Get_current_worker()
+            if current_worker != None:
+                # render cycle has completed and we can mark video as done
+                current_worker.set_video_complete(True)
+            else:
+                # Nonetype - there is no current worker
+                pass
 
-    def _rides_by_region(self:callable) -> list:
+    # NOTE Mapbox and Ride Info
+    def _get_mapbox_loaded(self:callable):
+            return Lookup.PROCESS.op("base_mapbox/MapboxTD").par.Loaded
+
+    def _rides_by_region(self:callable, region:str) -> list:
         '''Rides filtered by currently selected region
         '''
-        region = ipar.Settings.Location.eval()
         region_str = Process.region_map.get(region)
 
         # based on custom par
@@ -150,56 +187,7 @@ class Process:
         self._set_rides_coordinate_width(output_rides)
 
         return output_rides
-
-    def _cloud_render_complete(self:callable) -> None:
-        logging.info('Cloud Rendering Complete')
-        ipar.Settings.Active = False
-
-    def _get_mapbox_loaded(self:callable):
-            return Lookup.PROCESS.op("base_mapbox/MapboxTD").par.Loaded
     
-    def _render_view(self, location:int=0, view:int=0, recent:bool=False) -> None:
-        ipar.Settings.Location = location
-        ipar.Settings.Selectedview = view
-        self._render_current_view_to_file(recent)
-    
-    def _render_la_view(self) -> None:
-        ipar.Settings.Location = 0
-        ipar.Settings.Selectedview = 1
-        run('args[0]._render_current_view_to_file(args[1])', self, True, delayFrames=60)
-        run('args[0]._render_current_view_to_file(args[1])', self, False, delayFrames=70)
-
-    def _render_ba_view(self) -> None:
-        ipar.Settings.Location = 1
-        ipar.Settings.Selectedview = 1
-        run('args[0]._render_current_view_to_file(args[1])', self, True, delayFrames=60)
-        run('args[0]._render_current_view_to_file(args[1])', self, False, delayFrames=70)
-
-    def _render_current_view_to_file(self, recent:bool=False) -> str:
-        """
-        """
-        current_region = ipar.Settings.Location.eval()
-        sequence_index = 0
-        file_name = self._build_file_name(recent, current_region, sequence_index)
-        file_path = f'{ipar.Settings.Outputdirectory}/{file_name}.jpg'
-
-        Process.AWS_OUTPUT_TOP.par.file = file_path
-        Process.AWS_OUTPUT_TOP.par.record.pulse()
-        logging.info(f"PROCESS 🏭 | rendering to file")
-        return file_path
-
-    def _build_file_name(self, recent:bool=False, region:str='LA', sequence_index:int=0) -> str:
-        """
-        """
-        current_date = smTools.datetime.datetime.now()
-
-        if recent:
-            file_name = f"{region}-recent"
-        else:
-            file_name = f"{region}-{current_date.month}-{current_date.day}-{current_date.year}-TD-{sequence_index}"
-        print(file_name)
-        return file_name
-
     def _set_rides_coordinate_width(self, ride_list:list) -> None:
         coords_list = []
         for each_ride in ride_list:
@@ -216,7 +204,8 @@ class Process:
 
     # NOTE - DAT Processing 
     def Render_word_frequency_to_table(self, scriptOp:scriptDAT) -> list:
-        rides = self._rides_by_region()
+        region = scriptOp.parent().par.Location.eval()
+        rides = self._rides_by_region(region)
         data = CibicCart.datData.Render_word_frequency_to_table(rides)
         return data 
 
@@ -247,36 +236,48 @@ class Process:
         return data
 
     def Render_current_rides_to_table(self, scriptOp:scriptDAT) -> list:
-        rides = self._rides_by_region()
+        region = scriptOp.parent().par.Location.eval()
+        rides = self._rides_by_region(region)
         data = CibicCart.datData.Render_all_rides_to_table(
             scriptOp,
             rides)
         return data
 
     def Render_free_text_response_to_table(self, scriptOp:scriptDAT) -> list:
-        rides = self._rides_by_region()
+        region = scriptOp.parent().par.Location.eval()
+        rides = self._rides_by_region(region)
         data = CibicCart.datData.Render_free_text_response_to_table(scriptOp, rides)
         return data
 
     def Render_pod_data_to_table(self, scriptOp:scriptDAT) -> list:
-        rides = self._rides_by_region()
+        region = scriptOp.parent().par.Location.eval()
+        rides = self._rides_by_region(region)
         user_map = Lookup.DATA.User_Map
         data = CibicCart.datData.Render_pod_data_to_table(scriptOp, rides, user_map)
         return data
 
     def Render_flow_table(self, scriptOp:scriptDAT) -> list:
         data = []
-        header = ['flow_name', 'rides']
+        header = ['flow_name', 'rides', 'flow_satisfaction', 'journal_to_ride_ratio']
 
         data.append(header)
 
-        rides = self._rides_by_region()
+        region = scriptOp.parent().par.Location.eval()
+        rides = self._rides_by_region(region)
+        
         flow_dict = {}
         
         for each_ride in rides:
             current_ride:cibic_objects.Ride = each_ride
             flow = current_ride.Flow
             flow_use = len(flow.Rides)
+            flow_satisfaction = []
+
+            for each_flow_ride in flow.Rides:
+                each_flow_ride:cibic_objects.Ride
+                if each_flow_ride.Reflection_data != None:
+                    satisfaction = each_flow_ride.Reflection_data.answers[0]
+                    flow_satisfaction.append(satisfaction)
 
             if current_ride == None:
                 pass
@@ -286,18 +287,25 @@ class Process:
                     pass
                 else:
                     flow_dict[flow.name] = {
-                        'num_rides' : flow_use
+                        'num_rides' : flow_use,
+                        'flow_satisfaction' : flow_satisfaction,
+                        'journal_to_ride_ratio' : round(len(flow_satisfaction) / flow_use, 3)
                     }
 
         for each_flow, flow_vals in flow_dict.items():
-            row_data = [each_flow, flow_vals.get('num_rides')]
+            row_data = [
+                each_flow, 
+                flow_vals.get('num_rides'), 
+                flow_vals.get('flow_satisfaction'),
+                flow_vals.get('journal_to_ride_ratio')]
             data.append(row_data)
 
         return data
 
     # NOTE - TOP Processing 
     def Build_texture_position_all_rides(self, scriptOp:scriptTOP) -> callable:
-        rides = self._rides_by_region()
+        region = scriptOp.parent().par.Location.eval()
+        rides = self._rides_by_region(region)
         numpy_array = CibicCart.topData.Build_texture_position_all_rides(
             rides, 
             None,
@@ -306,7 +314,8 @@ class Process:
         return numpy_array
 
     def Build_texture_position_pods(self, scriptOp:scriptTOP) -> callable:
-        rides = self._rides_by_region()
+        region = scriptOp.parent().par.Location.eval()
+        rides = self._rides_by_region(region)
         pod_map = Lookup.DATA.Pod_Map
         matched_rides = []
         pod_popularity = []
@@ -338,7 +347,9 @@ class Process:
         return numpy_array
 
     def Build_texture_color_all_rides(self, scriptOp:scriptTOP) -> callable:
-        rides = self._rides_by_region()
+        region = scriptOp.parent().par.Location.eval()
+        
+        rides = self._rides_by_region(region)
         numpy_array = CibicCart.topData.Build_texture_color_all_rides(
             rides,
             Process.RIDE_SIZE,
@@ -347,14 +358,15 @@ class Process:
         return numpy_array
 
     def Build_texture_flows(self, scriptOp:scriptTOP) -> callable:
-        rides = self._rides_by_region()
+        region = scriptOp.parent().par.Location.eval()
+        rides = self._rides_by_region(region)
         numpy_array = CibicCart.topData.Build_texture_flows2(
             rides,
             scriptOp)
         return numpy_array
 
     def Build_texture_satisfaction_data_by_rider(self, scriptOp:scriptTOP) -> callable:
-        region = ipar.Settings.Location.eval()
+        region = scriptOp.parent().par.Location.eval()
         region_str = Process.region_map.get(region)
 
         user_map = Lookup.DATA.User_Map
@@ -387,9 +399,21 @@ class Process:
         return numpy_array
     
     def Build_texture_point_per_ride_along_path(self, scriptOp:scriptTOP) -> callable:
-        rides = self._rides_by_region()
+        region = scriptOp.parent().par.Location.eval()
+        rides = self._rides_by_region(region)
         numpy_array = CibicCart.topData.Point_per_ride_along_path(
             rides,
+            scriptOp)
+
+        return numpy_array
+
+    def Build_texture_point_per_ride_along_path_color(self, scriptOp:scriptTOP) -> callable:
+        region = scriptOp.parent().par.Location.eval()
+        rides = self._rides_by_region(region)
+
+        numpy_array = CibicCart.topData.Point_per_ride_along_path_color(
+            rides,
+            Process.COLOR_JOURNAL_LOOKUP,
             scriptOp)
 
         return numpy_array

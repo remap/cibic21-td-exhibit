@@ -239,13 +239,85 @@ def Point_per_ride_along_path(
         'mentor' : 2
     }
     point_list = []
+    ride_pos_index = 0
 
     for each_ride in source_data:
         current_ride:cibic_objects.Ride = each_ride
         role = current_ride.role
         satisfaction = 1
         if current_ride.journaled_data != None:
-            satisfaction = current_ride.journaled_data.answers[0] + 1
+            satisfaction = current_ride.journaled_data.answers[0]
+
+            # and yet another None snuck into the journaled data             
+            if satisfaction == None:
+                satisfaction = 0
+            else:
+                satisfaction += 1
+
+        if current_ride != None:
+            geometry = current_ride.Geo_JSON_Path_Only_Obj
+            if geometry != None:
+                coords = geometry.get('geometry').get('coordinates')
+                if coords != None:
+                    rand_index = random.randint(0, len(coords) - 1)
+                    # rand_index = ride_pos_index % len(coords)
+                    rand_coord = coords[rand_index]
+                    point_data = [rand_coord[1], rand_coord[0], role_map.get(role), satisfaction]
+                    point_list.append(point_data)
+
+                    ride_pos_index += 1
+
+    # create an empty ride array
+    np_ride_array = numpy.zeros((1, len(point_list), 4), dtype=numpy.float32)
+    np_ride_array[0] = point_list
+
+    return np_ride_array
+
+def Point_per_ride_along_path_color(
+    source_data:list, 
+    color_journal_lookup:OP,
+    scriptOp:scriptTOP) -> callable:
+
+    role_map = {
+        'rider' : 0,
+        'steward' : 1, 
+        'mentor' : 2
+    }
+    point_list = []
+
+    for each_ride in source_data:
+        current_ride:cibic_objects.Ride = each_ride
+        role = current_ride.role
+        satisfaction = 1
+        journal_color = [0.6, 0.6, 0.6, 1]
+        
+        if current_ride.journaled_data != None:
+            reflection_data = current_ride.Reflection_data.answers
+            satisfaction = current_ride.journaled_data.answers[0]
+            # and yet another None snuck into the journaled data             
+            if satisfaction == None:
+                satisfaction = 0
+            else:
+                satisfaction += 1
+
+            if reflection_data == '':
+                journal_color_index = 6
+                journal_color = [
+                    color_journal_lookup['r'][journal_color_index], 
+                    color_journal_lookup['g'][journal_color_index], 
+                    color_journal_lookup['b'][journal_color_index]]
+            else:
+                journal_color_index = reflection_data[3]
+                if journal_color_index == '' or journal_color_index == None:
+                    journal_color_index = 6
+            
+                else:
+                    journal_color_index = journal_color_index
+
+                journal_color = [
+                    color_journal_lookup['r'][journal_color_index], 
+                    color_journal_lookup['g'][journal_color_index], 
+                    color_journal_lookup['b'][journal_color_index]]
 
         if current_ride != None:
             geometry = current_ride.Geo_JSON_Path_Only_Obj
@@ -254,7 +326,7 @@ def Point_per_ride_along_path(
                 if coords != None:
                     rand_index = random.randint(0, len(coords) - 1)
                     rand_coord = coords[rand_index]
-                    point_data = [rand_coord[1], rand_coord[0], role_map.get(role), satisfaction]
+                    point_data = [journal_color[0], journal_color[1], journal_color[2], 1]
                     point_list.append(point_data)
 
     # create an empty ride array
