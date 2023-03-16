@@ -196,6 +196,26 @@ class Project:
         None      
         """
 
+        project_pars = smTools.Json_to_dict(ipar.Settings.Projectprofile.eval())
+        smTools.Update_custom_internal_pars(op.PROJECT, project_pars)
+        logging.info(f"PROJECT 🏛️ | profile loaded from {ipar.Settings.Projectprofile.eval()}")
+
+        pass
+
+    def Save_project_profile(self) -> None:
+        """
+        
+        Args
+        ---------------
+        self (`callable`)
+        > Class instance
+
+        Returns
+        ---------------
+        None      
+        """
+        pars_dict = smTools.Custom_pars_to_dict(op.PROJECT.par.iop1.eval(), [])
+        smTools.Save_dict_to_json(pars_dict, ipar.Settings.Projectprofile.eval())
         pass
 
     def Quit_project(self) -> None:

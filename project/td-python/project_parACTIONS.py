@@ -18,10 +18,10 @@ def Render() -> None:
     op.PROCESS.Run_cloud_render_process()
 
 def Loadprojectprofile() -> None:
-    ...
+    op.PROJECT.Load_project_profile()
 
 def Saveprojectprofile() -> None:
-    ...
+    op.PROJECT.Save_project_profile()
 
 def Quitproject() -> None:
     op.PROJECT.Quit_project()

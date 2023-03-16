@@ -28,7 +28,8 @@ class renderManager:
                 isImg=each_job.get('isImg'),
                 isVideo=each_job.get('isVideo'),
                 workerInfo=each_job.get('info'),
-                delayCall=each_job.get('delay'))
+                delayCall=each_job.get('delay'), 
+                sequenceIndex=each_job.get('sequenceIndex'))
             self.worker_stack.append(new_job)
         
         for each_index, each_stack_job in enumerate(self.worker_stack[:-1]):
@@ -69,6 +70,7 @@ class renderWorker:
             renderManager:callable= None,
             isImg:bool=False,
             isVideo:bool=False,
+            sequenceIndex:int=0,
             nextItem:callable=None, 
             delayCall:int=0,
             workerInfo:dict={}):
@@ -83,6 +85,7 @@ class renderWorker:
         self._worker_info = workerInfo
         self._render_ready = False
         self._video_complete = False
+        self._sequenceIndex = sequenceIndex
 
     # NOTE - state managers for DoWhen
     def get_state(self):
@@ -183,7 +186,7 @@ class renderWorker:
         
         # generate file name
         current_region = ipar.Settings.Location.eval()
-        sequence_index = 0
+        sequence_index = self._sequenceIndex
         recent = self._worker_info.get('recent')
         file_name = self._build_file_name(recent, current_region, sequence_index)
         file_path = f'{ipar.Settings.Outputdirectory}/{file_name}.mp4'

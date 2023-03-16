@@ -1,0 +1,15 @@
+{
+    "Camblend1": 0.0,
+    "Linecolor": "0",
+    "Loadprojectprofile": false,
+    "Location": "LA",
+    "Mapstyle": "mapbox://styles/cibic-mapbox/cl8265z24000214mooehh9my5",
+    "Outputsizeh": 2160.0,
+    "Outputsizew": 3840.0,
+    "Previousdaysofdata": 30,
+    "Projectprofile": "_public/data/profile/cibic-exhibit-profile.json",
+    "Quitproject": false,
+    "Render": false,
+    "Saveprojectprofile": true,
+    "Selectedview": "Map"
+}
