@@ -179,9 +179,13 @@ class renderWorker:
         '''
         '''
         logging.info(f"CLOUD RENDER ☁️ | {self.Worker_name} rendering video")
+
+        # set appropriate pars
+        ipar.Settings.Location = self._iparSettings.get('Location')
+        ipar.Settings.Selectedview = self._iparSettings.get('Selectedview')
         # set resolution
-        ipar.Settings.Outputsizew = 1920
-        ipar.Settings.Outputsizeh = 1080
+        ipar.Settings.Outputsizew = self._iparSettings.get('Outputsizew')
+        ipar.Settings.Outputsizeh = self._iparSettings.get('Outputsizeh')
 
         # turn off play on camera and cue to beginning of timer
         Lookup.PROCESS.CAMERA_TIMER.par.play = False
@@ -241,6 +245,8 @@ class renderWorker:
 
         ipar.Settings.Location = self._iparSettings.get('Location')
         ipar.Settings.Selectedview = self._iparSettings.get('Selectedview')
+        ipar.Settings.Outputsizew = self._iparSettings.get('Outputsizew')
+        ipar.Settings.Outputsizeh = self._iparSettings.get('Outputsizeh')
 
         Lookup.PROCESS.CAMERA_TIMER.par.play = False
         Lookup.PROCESS.CAMERA_TIMER.par.cue = True
