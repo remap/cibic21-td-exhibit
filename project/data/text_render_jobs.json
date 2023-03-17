@@ -1,80 +1,142 @@
 [
     {
-    "isImg" : true,
-    "isVideo" : false,
-    "delay" : 120,
-    "info" : {
+        "renderJobName" : "LA-recent-center",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 0,
+        "recent" : true,
+        "gallery" : false,
+        "renderFrame" : 0,
         "iparSettings" : {
             "Location" :  0,
             "Selectedview" : 1
-            },
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-01",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 1,
         "recent" : true,
-        "renderFrame" : 0
+        "gallery" : true,
+        "renderFrame" : 0,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-02",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 2,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 0,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-03",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 3,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 0,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-04",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 4,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 0,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1
+            }
+    },
+    {
+        "renderJobName" : "LA-center-with-date",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 0,
+        "recent" : false,
+        "gallery" : false,
+        "renderFrame" : 0,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1
         }
     },
     {
-    "isImg" : true,
-    "isVideo" : false,
-    "delay" : 120,
-    "info" : {
+        "renderJobName" : "LA-recent-video",
+        "isImg" : false,
+        "isVideo" : true,
+        "delay" : 120,
+        "sequenceIndex" : 0,
+        "recent" : true,
+        "gallery" : false,
+        "renderFrame" : 0,
         "iparSettings" : {
             "Location" :  0,
             "Selectedview" : 1
-            },
+            }
+    },
+    {
+        "renderJobName" : "BA-recent-center",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 0,
+        "recent" : true,
+        "gallery" : false,
+        "renderFrame" : 0,
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1
+            }
+    },
+    {
+        "renderJobName" : "BA-center-with-date",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 0,
         "recent" : false,
-        "renderFrame" : 0
-    }
-    },
-    {
-    "isImg" : false,
-    "isVideo" : true,
-    "delay" : 120,
-    "info" : {
-        "iparSettings" : {
-            "Location" :  0,
-            "Selectedview" : 1
-            },
-        "recent" : true,
-        "renderFrame" : 0
-    }
-    },
-    {
-    "isImg" : true,
-    "isVideo" : false,
-    "delay" : 120,
-    "info" : {
+        "gallery" : false,
+        "renderFrame" : 0,
         "iparSettings" : {
             "Location" :  1,
             "Selectedview" : 1
-            },
-        "recent" : true,
-        "renderFrame" : 0
-    }
+            }
     },
     {
-    "isImg" : true,
-    "isVideo" : false,
-    "delay" : 120,
-    "info" : {
+        "renderJobName" : "BA-recent-video",
+        "isImg" : false,
+        "isVideo" : true,
+        "delay" : 120,
+        "sequenceIndex" : 0,
+        "recent" : true,
+        "gallery" : false,
+        "renderFrame" : 0,
         "iparSettings" : {
             "Location" :  1,
             "Selectedview" : 1
-            },
-        "recent" : false,
-        "renderFrame" : 0
-    }
-    },
-    {
-    "isImg" : false,
-    "isVideo" : true,
-    "delay" : 120,
-    "info" : {
-        "iparSettings" : {
-            "Location" :  1,
-            "Selectedview" : 1
-            },
-        "recent" : true,
-        "renderFrame" : 0
-    }
+            }
     }
 ]

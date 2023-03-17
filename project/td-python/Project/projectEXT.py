@@ -107,7 +107,7 @@ class Project:
         project.paths['profile'] = f'{var("PUBLIC")}\\data\profile'
 
         # set project profile json file
-        ipar.Settings.Projectprofile = f'{var("PUBLIC")}\\data\profile\\tec-cms-profile.json'
+        ipar.Settings.Projectprofile = f'{var("PUBLIC")}\\data\profile\\cibic-exhibit-profile.json'
 
         # load project profile
         self.Load_project_profile()
