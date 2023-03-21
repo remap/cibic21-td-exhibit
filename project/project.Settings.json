@@ -1,10 +1,10 @@
 {
     "project.paths": {
-        "log": "D:\\_repos\\CiBiC\\cibic-exhibition-app\\project\\_public\\log",
-        "assets": "D:\\_repos\\CiBiC\\cibic-exhibition-app\\project\\_public\\assets",
-        "media": "D:\\_repos\\CiBiC\\cibic-exhibition-app\\project\\_public\\assets\\media",
-        "thumbnails": "D:\\_repos\\CiBiC\\cibic-exhibition-app\\project\\_public\\assets\\imgs\\thumbnails",
-        "data": "D:\\_repos\\CiBiC\\cibic-exhibition-app\\project\\_public\\data",
-        "profile": "D:\\_repos\\CiBiC\\cibic-exhibition-app\\project\\_public\\data\\profile"
+        "data": "D:\\_repos\\CiBiC\\cibic21-td-exhibit\\project\\_public\\data",
+        "log": "D:\\_repos\\CiBiC\\cibic21-td-exhibit\\project\\_public\\log",
+        "assets": "D:\\_repos\\CiBiC\\cibic21-td-exhibit\\project\\_public\\assets",
+        "media": "D:\\_repos\\CiBiC\\cibic21-td-exhibit\\project\\_public\\assets\\media",
+        "thumbnails": "D:\\_repos\\CiBiC\\cibic21-td-exhibit\\project\\_public\\assets\\imgs\\thumbnails",
+        "profile": "D:\\_repos\\CiBiC\\cibic21-td-exhibit\\project\\_public\\data\\profile"
     }
 }

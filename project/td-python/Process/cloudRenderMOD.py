@@ -23,12 +23,17 @@ class renderManager:
         for each_index, each_job in enumerate(job_list):
             
             new_job = renderWorker(
-                renderManager=self,
                 workerName=f'render job {each_index}',
+                renderManager=self,
+                jobName=each_job.get('renderJobName'),
                 isImg=each_job.get('isImg'),
                 isVideo=each_job.get('isVideo'),
-                workerInfo=each_job.get('info'),
-                delayCall=each_job.get('delay'))
+                delayCall=each_job.get('delay'), 
+                sequenceIndex=each_job.get('sequenceIndex'),
+                gallery=each_job.get('gallery'),
+                recent=each_job.get('recent'),
+                renderFrame=each_job.get('renderFrame'),
+                iparSettings=each_job.get('iparSettings'))
             self.worker_stack.append(new_job)
         
         for each_index, each_stack_job in enumerate(self.worker_stack[:-1]):
@@ -67,20 +72,30 @@ class renderWorker:
             self,
             workerName:str=None,
             renderManager:callable= None,
+            jobName:str=None,
             isImg:bool=False,
             isVideo:bool=False,
-            nextItem:callable=None, 
             delayCall:int=0,
-            workerInfo:dict={}):
+            sequenceIndex:int=0,
+            gallery:bool=False,
+            recent:bool=False,
+            renderFrame:int=0,
+            iparSettings:dict={},
+            nextItem:callable=None):
         
-        self._renderManager = renderManager
         self.Worker_name = workerName
-        self._state = False
-        self._isVideo = isVideo
+        self._renderManager = renderManager
+        self._job_name = jobName
         self._isImg = isImg
-        self._next_item = nextItem
+        self._isVideo = isVideo
         self._delay_call = delayCall
-        self._worker_info = workerInfo
+        self._sequenceIndex = sequenceIndex
+        self._gallery = gallery
+        self._recent = recent
+        self._render_frame = renderFrame
+        self._iparSettings = iparSettings
+        self._next_item = nextItem
+        self._state = False
         self._render_ready = False
         self._video_complete = False
 
@@ -114,7 +129,6 @@ class renderWorker:
         '''
         '''
         logging.info(f"CLOUD RENDER ☁️ | {self.Worker_name} running action")
-        worker_info = self._worker_info
         delay_update = "args[0].set_state(True)"
         run(delay_update, self, delayFrames=self._delay_call)
 
@@ -145,13 +159,16 @@ class renderWorker:
         except Exception as e:
             debug(e)
 
-    def _build_file_name(self, recent:bool=False, region:str='LA', sequence_index:int=0) -> str:
+    def _build_file_name(self, recent:bool=False, gallery:bool=False, region:str='LA', sequence_index:int=0) -> str:
         '''
         '''
         current_date = SudoMagic.datetime.datetime.now()
 
         if recent:
-            file_name = f"{region}-recent"
+            if gallery: 
+                file_name = f"{region}-{sequence_index:02d}"
+            else:
+                file_name = f"{region}-recent"
         else:
             file_name = f"{region}-{current_date.month}-{current_date.day}-{current_date.year}-TD-{sequence_index}"
         logging.info(f'CLOUD RENDER ☁️ | generating file name {file_name}')
@@ -162,9 +179,13 @@ class renderWorker:
         '''
         '''
         logging.info(f"CLOUD RENDER ☁️ | {self.Worker_name} rendering video")
+
+        # set appropriate pars
+        ipar.Settings.Location = self._iparSettings.get('Location')
+        ipar.Settings.Selectedview = self._iparSettings.get('Selectedview')
         # set resolution
-        ipar.Settings.Outputsizew = 1920
-        ipar.Settings.Outputsizeh = 1080
+        ipar.Settings.Outputsizew = self._iparSettings.get('Outputsizew')
+        ipar.Settings.Outputsizeh = self._iparSettings.get('Outputsizeh')
 
         # turn off play on camera and cue to beginning of timer
         Lookup.PROCESS.CAMERA_TIMER.par.play = False
@@ -183,9 +204,14 @@ class renderWorker:
         
         # generate file name
         current_region = ipar.Settings.Location.eval()
-        sequence_index = 0
-        recent = self._worker_info.get('recent')
-        file_name = self._build_file_name(recent, current_region, sequence_index)
+        sequence_index = self._sequenceIndex
+        recent = self._recent
+        gallery = self._gallery
+        file_name = self._build_file_name(
+            recent=recent, 
+            gallery=gallery, 
+            region=current_region, 
+            sequence_index=sequence_index)
         file_path = f'{ipar.Settings.Outputdirectory}/{file_name}.mp4'
 
         Lookup.PROCESS.AWS_OUTPUT_TOP.par.type = 0
@@ -217,12 +243,14 @@ class renderWorker:
         
         # NOTE start the render_view
 
-        ipar.Settings.Location = self._worker_info.get('iparSettings').get('Location')
-        ipar.Settings.Selectedview = self._worker_info.get('iparSettings').get('Selectedview')
+        ipar.Settings.Location = self._iparSettings.get('Location')
+        ipar.Settings.Selectedview = self._iparSettings.get('Selectedview')
+        ipar.Settings.Outputsizew = self._iparSettings.get('Outputsizew')
+        ipar.Settings.Outputsizeh = self._iparSettings.get('Outputsizeh')
 
         Lookup.PROCESS.CAMERA_TIMER.par.play = False
         Lookup.PROCESS.CAMERA_TIMER.par.cue = True
-        Lookup.PROCESS.CAMERA_TIMER.par.cuepoint = self._worker_info.get('renderFrame')
+        Lookup.PROCESS.CAMERA_TIMER.par.cuepoint = self._render_frame
 
         self.set_render_ready(False)
 
@@ -236,11 +264,14 @@ class renderWorker:
     def _render_img_to_file(self) -> str:
         '''
         '''
-        sequence_index = 0
-        recent = self._worker_info.get('recent')
         current_region = ipar.Settings.Location.eval()
 
-        file_name = self._build_file_name(recent, current_region, sequence_index)
+        file_name = self._build_file_name(
+            recent=self._recent, 
+            gallery=self._gallery,
+            region=current_region, 
+            sequence_index=self._sequenceIndex)
+        
         file_path = f'{ipar.Settings.Outputdirectory}/{file_name}.jpg'
 
         Lookup.PROCESS.AWS_OUTPUT_TOP.par.type = 1

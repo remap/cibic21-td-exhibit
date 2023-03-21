@@ -1,5 +1,17 @@
 {
     "Output": {
+        "Showsettings": {
+            "name": "Showsettings",
+            "label": "Show Settings",
+            "page": "Output",
+            "style": "Toggle",
+            "default": false,
+            "enable": true,
+            "startSection": false,
+            "readOnly": true,
+            "enableExpr": null,
+            "help": ""
+        },
         "Outputsize": {
             "name": "Outputsize",
             "label": "Output Size",
@@ -7,7 +19,7 @@
             "style": "WH",
             "default": 0.0,
             "enable": true,
-            "startSection": false,
+            "startSection": true,
             "readOnly": false,
             "enableExpr": null,
             "help": "",
@@ -246,7 +258,7 @@
             "default": false,
             "enable": true,
             "startSection": false,
-            "readOnly": false,
+            "readOnly": true,
             "enableExpr": null,
             "help": ""
         },
@@ -258,7 +270,7 @@
             "default": "",
             "enable": true,
             "startSection": true,
-            "readOnly": false,
+            "readOnly": true,
             "enableExpr": null,
             "help": ""
         },
@@ -270,7 +282,7 @@
             "default": "",
             "enable": true,
             "startSection": false,
-            "readOnly": false,
+            "readOnly": true,
             "enableExpr": null,
             "help": ""
         },

@@ -1,80 +1,354 @@
 [
     {
-    "isImg" : true,
-    "isVideo" : false,
-    "delay" : 120,
-    "info" : {
+        "renderJobName" : "LA-recent-center",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 0,
+        "recent" : true,
+        "gallery" : false,
+        "renderFrame" : 0,
         "iparSettings" : {
             "Location" :  0,
-            "Selectedview" : 1
-            },
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-01",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 1,
         "recent" : true,
-        "renderFrame" : 0
+        "gallery" : true,
+        "renderFrame" : 0,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-02",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 2,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 1147,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-03",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 3,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 1700,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-04",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 4,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 3320,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-05",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 5,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 4636,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-06",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 6,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 4866,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-07",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 7,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 4226,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "LA-gallery-08",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 8,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 3286,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "LA-center-with-date",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 0,
+        "recent" : false,
+        "gallery" : false,
+        "renderFrame" : 0,
+        "iparSettings" : {
+            "Location" :  0,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
         }
     },
     {
-    "isImg" : true,
-    "isVideo" : false,
-    "delay" : 120,
-    "info" : {
+        "renderJobName" : "LA-recent-video",
+        "isImg" : false,
+        "isVideo" : true,
+        "delay" : 120,
+        "sequenceIndex" : 0,
+        "recent" : true,
+        "gallery" : false,
+        "renderFrame" : 0,
         "iparSettings" : {
             "Location" :  0,
-            "Selectedview" : 1
-            },
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "BA-recent-center",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 0,
+        "recent" : true,
+        "gallery" : false,
+        "renderFrame" : 0,
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "BA-gallery-01",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 1,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 0,
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "BA-gallery-02",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 2,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 1147,
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "BA-gallery-03",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 3,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 1700,
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "BA-gallery-04",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 4,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 3320,
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "BA-gallery-05",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 5,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 4636,
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "BA-gallery-06",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 6,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 4866,
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "BA-gallery-07",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 7,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 4226,
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "BA-gallery-08",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 8,
+        "recent" : true,
+        "gallery" : true,
+        "renderFrame" : 3286,
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
+    },
+    {
+        "renderJobName" : "BA-center-with-date",
+        "isImg" : true,
+        "isVideo" : false,
+        "delay" : 120,
+        "sequenceIndex" : 0,
         "recent" : false,
-        "renderFrame" : 0
-    }
-    },
-    {
-    "isImg" : false,
-    "isVideo" : true,
-    "delay" : 120,
-    "info" : {
-        "iparSettings" : {
-            "Location" :  0,
-            "Selectedview" : 1
-            },
-        "recent" : true,
-        "renderFrame" : 0
-    }
-    },
-    {
-    "isImg" : true,
-    "isVideo" : false,
-    "delay" : 120,
-    "info" : {
+        "gallery" : false,
+        "renderFrame" : 0,
         "iparSettings" : {
             "Location" :  1,
-            "Selectedview" : 1
-            },
-        "recent" : true,
-        "renderFrame" : 0
-    }
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
     },
     {
-    "isImg" : true,
-    "isVideo" : false,
-    "delay" : 120,
-    "info" : {
-        "iparSettings" : {
-            "Location" :  1,
-            "Selectedview" : 1
-            },
-        "recent" : false,
-        "renderFrame" : 0
-    }
-    },
-    {
-    "isImg" : false,
-    "isVideo" : true,
-    "delay" : 120,
-    "info" : {
-        "iparSettings" : {
-            "Location" :  1,
-            "Selectedview" : 1
-            },
+        "renderJobName" : "BA-recent-video",
+        "isImg" : false,
+        "isVideo" : true,
+        "delay" : 120,
+        "sequenceIndex" : 0,
         "recent" : true,
-        "renderFrame" : 0
-    }
+        "gallery" : false,
+        "renderFrame" : 0,
+        "iparSettings" : {
+            "Location" :  1,
+            "Selectedview" : 1,
+            "Outputsizew" : 1920,
+            "Outputsizeh" : 1080
+            }
     }
 ]

@@ -1,0 +1,10 @@
+name	id	left	right	default	keys	liner	lineg	lineb	picked	display	template
+cam_tx	1	hold	hold	0	keys	0.7	0.14	0.154768	0	1	0
+cam_ty	2	hold	hold	0	keys	0.7	0.283899	0.14	0	1	0
+cam_tz	3	hold	hold	0	keys	0.7	0.442565	0.14	0	1	0
+cam_rx	7	hold	hold	0	keys	0.322768	0.7	0.14	0	1	0
+cam_ry	8	hold	hold	0	keys	0.164101	0.7	0.14	0	1	0
+cam_rz	9	hold	hold	0	keys	0.14	0.7	0.274565	0	1	0
+lookat_tx	10	hold	hold	0	keys	0.14	0.7	0.433232	0	1	0
+lookat_ty	11	hold	hold	0	keys	0.14	0.7	0.591898	0	1	0
+lookat_tz	12	hold	hold	0	keys	0.14	0.649435	0.7	0	1	0
