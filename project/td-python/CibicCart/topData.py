@@ -2,6 +2,7 @@ import numpy
 import cartHelpers
 from CibicObjects import cibic_objects
 import random
+from collections import Counter
 
 def Build_texture_position_all_rides(
     source_data:list, 
@@ -332,5 +333,75 @@ def Point_per_ride_along_path_color(
     # create an empty ride array
     np_ride_array = numpy.zeros((1, len(point_list), 4), dtype=numpy.float32)
     np_ride_array[0] = point_list
+
+    return np_ride_array
+
+def most_common_val(input_list):
+    data = Counter(input_list)
+    return data.most_common(1)[0][0]
+
+def Colormap_by_common_user_selection(
+    source_data:list, 
+    color_journal_lookup:OP,
+    scriptOp:scriptTOP) -> callable:
+
+    current_flows = set()
+    all_flow_paths = []
+    flow_use = []
+    flow_colors = []
+    most_common = []
+
+    for each_ride in source_data:
+        current_ride:cibic_objects.Ride = each_ride
+        if current_ride != None:
+            if current_ride.Flow != None:
+                current_flows.add(current_ride.Flow)
+
+    for each_flow in current_flows:
+        this_flow:cibic_objects.Flow = each_flow
+        geometry = this_flow.flow_path.get('geometry')
+        flow_color_selection = []
+        if geometry != None:
+            all_flow_paths.append(geometry.get('coordinates'))
+            flow_use.append(len(this_flow.Rides))
+
+            for each_ride in source_data:
+                if this_flow.flow_id == each_ride.flow_id:
+                    each_ride:cibic_objects.Ride
+                    if each_ride.Reflection_data == None:
+                        color_index = 6
+                    else:
+                        color_index = each_ride.Reflection_data.answers[0]
+                    
+                    flow_color_selection.append(color_index)
+
+                else:
+                    pass
+        
+        flow_colors.append(flow_color_selection)
+
+    for each_flow_color in flow_colors:        
+        common_color_index = most_common_val(each_flow_color)
+        common_color = [color_journal_lookup['r'][common_color_index], 
+                        color_journal_lookup['g'][common_color_index], 
+                        color_journal_lookup['b'][common_color_index]]
+        most_common.append(common_color)
+
+
+    path_sizes = [len(each) for each in all_flow_paths]
+    max_path_size = max(path_sizes)
+
+    # create an empty ride array
+    np_ride_array = numpy.zeros((len(all_flow_paths), max_path_size, 4), dtype=numpy.float32)
+
+    for each_index, each_color in enumerate(most_common):
+        single_flow = []
+
+        # fill in extra elements with 0s
+        while len(single_flow) < max_path_size:
+            single_flow.append([each_color[0], each_color[1], each_color[2], 1.0])
+        
+        # replace 0's in np array with ride data
+        np_ride_array[each_index] = single_flow
 
     return np_ride_array

@@ -364,6 +364,15 @@ class Process:
             rides,
             scriptOp)
         return numpy_array
+    
+    def Build_colormap_flows(self, scriptOp:scriptTOP) -> callable:
+        region = scriptOp.parent().par.Location.eval()
+        rides = self._rides_by_region(region)
+        numpy_array = CibicCart.topData.Colormap_by_common_user_selection(
+            rides,
+            Process.COLOR_JOURNAL_LOOKUP,
+            scriptOp)
+        return numpy_array
 
     def Build_texture_satisfaction_data_by_rider(self, scriptOp:scriptTOP) -> callable:
         region = scriptOp.parent().par.Location.eval()
