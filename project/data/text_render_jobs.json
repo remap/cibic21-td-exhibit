@@ -39,7 +39,7 @@
         "sequenceIndex" : 2,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 1147,
+        "renderFrame" : 1440,
         "iparSettings" : {
             "Location" :  0,
             "Selectedview" : 1,
@@ -71,7 +71,7 @@
         "sequenceIndex" : 4,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 3320,
+        "renderFrame" : 2880,
         "iparSettings" : {
             "Location" :  0,
             "Selectedview" : 1,
@@ -87,7 +87,7 @@
         "sequenceIndex" : 5,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 4636,
+        "renderFrame" : 3280,
         "iparSettings" : {
             "Location" :  0,
             "Selectedview" : 1,
@@ -103,7 +103,7 @@
         "sequenceIndex" : 6,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 4866,
+        "renderFrame" : 3380,
         "iparSettings" : {
             "Location" :  0,
             "Selectedview" : 1,
@@ -119,7 +119,7 @@
         "sequenceIndex" : 7,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 4226,
+        "renderFrame" : 4330,
         "iparSettings" : {
             "Location" :  0,
             "Selectedview" : 1,
@@ -135,7 +135,7 @@
         "sequenceIndex" : 8,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 3286,
+        "renderFrame" : 4930,
         "iparSettings" : {
             "Location" :  0,
             "Selectedview" : 1,
@@ -215,7 +215,7 @@
         "sequenceIndex" : 2,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 1147,
+        "renderFrame" : 1440,
         "iparSettings" : {
             "Location" :  1,
             "Selectedview" : 1,
@@ -247,7 +247,7 @@
         "sequenceIndex" : 4,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 3320,
+        "renderFrame" : 2880,
         "iparSettings" : {
             "Location" :  1,
             "Selectedview" : 1,
@@ -263,7 +263,7 @@
         "sequenceIndex" : 5,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 4636,
+        "renderFrame" : 3280,
         "iparSettings" : {
             "Location" :  1,
             "Selectedview" : 1,
@@ -279,7 +279,7 @@
         "sequenceIndex" : 6,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 4866,
+        "renderFrame" : 3380,
         "iparSettings" : {
             "Location" :  1,
             "Selectedview" : 1,
@@ -295,7 +295,7 @@
         "sequenceIndex" : 7,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 4226,
+        "renderFrame" : 4330,
         "iparSettings" : {
             "Location" :  1,
             "Selectedview" : 1,
@@ -311,7 +311,7 @@
         "sequenceIndex" : 8,
         "recent" : true,
         "gallery" : true,
-        "renderFrame" : 3286,
+        "renderFrame" : 4930,
         "iparSettings" : {
             "Location" :  1,
             "Selectedview" : 1,
