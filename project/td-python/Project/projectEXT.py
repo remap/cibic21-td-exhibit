@@ -100,6 +100,7 @@ class Project:
 
         logging.info(f"PROJECT 🏛️ | Starting Touch_start() call - {self.My_op} ")
 
+
         # run bucket sync
         self.fetch_cloud_data()
 
@@ -116,6 +117,7 @@ class Project:
 
         # load project profile
         self.Load_project_profile()
+
 
         # set addresses and machine name		
         ipar.Settings.Ipaddress = self._get_machine_ip()
@@ -139,11 +141,33 @@ class Project:
         for child in self.My_op.findChildren(tags=["unlockOnSave"]):
             child.lock = True
 
+        # set perform mode
+        self.set_perform()
+
         logging.info(f"PROJECT 🏛️ | Completing Touch_start() call - {self.My_op}")
 
         # delays running cloud rendering call
         delay_cloud_rendering = "args[0].Cloud_rendering()"
         run(delay_cloud_rendering, self, delayFrames = Project.CLOUD_RENDER_DELAY_FRAMES)
+
+    def set_perform(self) -> None:
+        """sets perform mode and output if dev is false
+        """
+        if me.var('DEV') == 'TRUE':
+            pass
+        else:
+
+            if len(monitors) > 2:
+                target_monitor = monitors[1]
+                monitor_index = 1
+            else:
+                target_monitor = monitors[0]
+                monitor_index = 0
+
+            ipar.Settings.Outputsizew = target_monitor.width
+            ipar.Settings.Outputsizeh = target_monitor.height
+            op('/perform').par.monitor = monitor_index    
+            ui.performMode = True
 
     def fetch_cloud_data(self) -> None:
         """Syncs data from AWS
