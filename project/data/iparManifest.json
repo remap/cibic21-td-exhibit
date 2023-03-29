@@ -110,6 +110,28 @@
                 "Abstract"
             ]
         },
+        "Camerapath": {
+            "name": "Camerapath",
+            "label": "Camera Path",
+            "page": "Output",
+            "style": "Menu",
+            "default": "path1",
+            "enable": true,
+            "startSection": false,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": "",
+            "menuNames": [
+                "path1",
+                "path2",
+                "path3"
+            ],
+            "menuLabels": [
+                "Path1",
+                "Path2",
+                "Path3"
+            ]
+        },
         "Previousdaysofdata": {
             "name": "Previousdaysofdata",
             "label": "Previous Days of Data",

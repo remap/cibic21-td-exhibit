@@ -1,7 +1,8 @@
 {
+    "Camerapath": "path3",
     "Linecolor": "0",
     "Loadprojectprofile": false,
-    "Location": "LA",
+    "Location": "BA",
     "Mapstyle": "mapbox://styles/cibic-mapbox/cl8265z24000214mooehh9my5",
     "Outputsizeh": 2160.0,
     "Outputsizew": 3840.0,
