@@ -12,6 +12,7 @@ import Lookup
 import json
 import socket
 import logging
+import subprocess
 
 class Project:
     """ Project Class
@@ -27,6 +28,7 @@ class Project:
     #NOTE - other class variables
     _config_default_overrides = "data/default_overrides.json"
     New_default_profile = "default_profile.json"
+    aws_bucket_sync = "cloud-scripts/cloud-bucket-fetch.cmd"
     CLOUD_RENDER_DELAY_FRAMES = 60
 
     LA_MAPBOX = {
@@ -98,6 +100,9 @@ class Project:
 
         logging.info(f"PROJECT 🏛️ | Starting Touch_start() call - {self.My_op} ")
 
+        # run bucket sync
+        self.fetch_cloud_data()
+
         ipar.Settings.Rootpath = var("PUBLIC")
         project.paths['log'] = f'{var("PUBLIC")}\\log'
         project.paths['assets'] = f'{var("PUBLIC")}\\assets'
@@ -139,6 +144,20 @@ class Project:
         # delays running cloud rendering call
         delay_cloud_rendering = "args[0].Cloud_rendering()"
         run(delay_cloud_rendering, self, delayFrames = Project.CLOUD_RENDER_DELAY_FRAMES)
+
+    def fetch_cloud_data(self) -> None:
+        """Syncs data from AWS
+        """
+
+        # only run if we're an installation
+        if ipar.Settings.Cloudrendering.eval():
+            pass
+
+        else:
+            logging.info(f"PROJECT 🏛️ | Starting AWS Sync ")
+            script = f"{project.folder}/{Project.aws_bucket_sync}"
+            subprocess.run(script)
+            logging.info(f"PROJECT 🏛️ | Completing AWS Sync ")
 
     def Cloud_rendering(self) -> bool:
         """Runs cloud rendering operation
