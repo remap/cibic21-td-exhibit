@@ -314,7 +314,10 @@ def Render_free_text_response_to_table(scriptOp:scriptDAT, rides:list) -> list:
         if current_ride.user_id != None and journal != None:
             free_text = journal.answers[2]
             if free_text != '' :
-                data.append([current_ride.user_id, free_text])
+                if free_text == None:
+                    pass
+                else:
+                    data.append([current_ride.user_id, free_text])
     return data
 
 def Render_pod_data_to_table(scriptOp:scriptDAT, rides:list, user_map:dict) -> list:
