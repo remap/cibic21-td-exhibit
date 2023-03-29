@@ -110,25 +110,6 @@
                 "Abstract"
             ]
         },
-        "Camblend1": {
-            "name": "Camblend1",
-            "label": "Cam Blend1",
-            "page": "Output",
-            "style": "Float",
-            "size": 1,
-            "default": 0.0,
-            "enable": true,
-            "startSection": false,
-            "readOnly": false,
-            "enableExpr": null,
-            "help": "",
-            "min": 0.0,
-            "max": 1.0,
-            "normMin": 0.0,
-            "normMax": 8.0,
-            "clampMin": false,
-            "clampMax": false
-        },
         "Previousdaysofdata": {
             "name": "Previousdaysofdata",
             "label": "Previous Days of Data",
