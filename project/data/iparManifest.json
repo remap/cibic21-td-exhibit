@@ -58,7 +58,7 @@
             "default": "mapbox://styles/cibic-mapbox/cl8269n1l002914o8890b24z4",
             "enable": true,
             "startSection": false,
-            "readOnly": false,
+            "readOnly": true,
             "enableExpr": null,
             "help": "",
             "menuNames": [
@@ -98,7 +98,7 @@
             "default": "Map",
             "enable": true,
             "startSection": false,
-            "readOnly": false,
+            "readOnly": true,
             "enableExpr": null,
             "help": "",
             "menuNames": [
@@ -173,7 +173,7 @@
             "default": "",
             "enable": true,
             "startSection": true,
-            "readOnly": false,
+            "readOnly": true,
             "enableExpr": null,
             "help": ""
         },
