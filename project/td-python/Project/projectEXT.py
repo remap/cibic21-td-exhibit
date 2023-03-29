@@ -153,10 +153,8 @@ class Project:
     def set_perform(self) -> None:
         """sets perform mode and output if dev is false
         """
-        if me.var('DEV') == 'TRUE':
-            pass
-        else:
-
+        
+        if me.var('DEV') == 'FALSE' and me.var('CLOUDRENDERING') == 'False':
             if len(monitors) > 2:
                 target_monitor = monitors[1]
                 monitor_index = 1
@@ -168,6 +166,9 @@ class Project:
             ipar.Settings.Outputsizeh = target_monitor.height
             op('/perform').par.monitor = monitor_index    
             ui.performMode = True
+
+        else:
+            pass
 
     def fetch_cloud_data(self) -> None:
         """Syncs data from AWS
