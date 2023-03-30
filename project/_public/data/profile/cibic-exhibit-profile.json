@@ -1,11 +1,11 @@
 {
-    "Camerapath": "path3",
+    "Camerapath": "path2",
     "Linecolor": "0",
     "Loadprojectprofile": false,
-    "Location": "LA",
+    "Location": "BA",
     "Outputsizeh": 2160.0,
     "Outputsizew": 3840.0,
-    "Previousdaysofdata": 30,
+    "Previousdaysofdata": 60,
     "Quitproject": false,
     "Render": false,
     "Saveprojectprofile": true
