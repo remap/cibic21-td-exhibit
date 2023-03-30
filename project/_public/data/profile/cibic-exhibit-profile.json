@@ -1,14 +1,12 @@
 {
+    "Camerapath": "path2",
     "Linecolor": "0",
     "Loadprojectprofile": false,
-    "Location": "LA",
-    "Mapstyle": "mapbox://styles/cibic-mapbox/cl8265z24000214mooehh9my5",
+    "Location": "BA",
     "Outputsizeh": 2160.0,
     "Outputsizew": 3840.0,
-    "Previousdaysofdata": 30,
-    "Projectprofile": "_public/data/profile/cibic-exhibit-profile.json",
+    "Previousdaysofdata": 60,
     "Quitproject": false,
     "Render": false,
-    "Saveprojectprofile": true,
-    "Selectedview": "Abstract"
+    "Saveprojectprofile": true
 }

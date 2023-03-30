@@ -58,7 +58,7 @@
             "default": "mapbox://styles/cibic-mapbox/cl8269n1l002914o8890b24z4",
             "enable": true,
             "startSection": false,
-            "readOnly": false,
+            "readOnly": true,
             "enableExpr": null,
             "help": "",
             "menuNames": [
@@ -98,7 +98,7 @@
             "default": "Map",
             "enable": true,
             "startSection": false,
-            "readOnly": false,
+            "readOnly": true,
             "enableExpr": null,
             "help": "",
             "menuNames": [
@@ -108,6 +108,28 @@
             "menuLabels": [
                 "Map",
                 "Abstract"
+            ]
+        },
+        "Camerapath": {
+            "name": "Camerapath",
+            "label": "Camera Path",
+            "page": "Output",
+            "style": "Menu",
+            "default": "path1",
+            "enable": true,
+            "startSection": false,
+            "readOnly": false,
+            "enableExpr": null,
+            "help": "",
+            "menuNames": [
+                "path1",
+                "path2",
+                "path3"
+            ],
+            "menuLabels": [
+                "Path1",
+                "Path2",
+                "Path3"
             ]
         },
         "Previousdaysofdata": {
@@ -151,7 +173,7 @@
             "default": "",
             "enable": true,
             "startSection": true,
-            "readOnly": false,
+            "readOnly": true,
             "enableExpr": null,
             "help": ""
         },
