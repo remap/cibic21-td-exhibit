@@ -25,6 +25,8 @@ CiBiC is a collaborative research project led by UCLA and funded by the National
 Learn more at [cibic.bike](https://cibic.bike/)
 
 ## About this Repo
+### Project Privacy
+password: 3202cibic
 
 
 #### Env Vars
