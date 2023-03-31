@@ -15,6 +15,12 @@
 # cmd - True if the cmd modifier is pressed
 
 def onKey(dat, key, character, alt, lAlt, rAlt, ctrl, lCtrl, rCtrl, shift, lShift, rShift, state, time, cmd, lCmd, rCmd):
+	if state:
+		if shift:
+			pass
+		else:
+			val = 0 if ipar.Settings.Showsettings.eval() else 1
+			ipar.Settings.Showsettings = val
 	return
 
 # shortcutName is the name of the shortcut
