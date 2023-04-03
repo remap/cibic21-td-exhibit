@@ -13,3 +13,5 @@ secrets.py
 project/_exports/img_cache/
 
 project/td-python/CibicObjects/secrets.py
+
+_builds/
