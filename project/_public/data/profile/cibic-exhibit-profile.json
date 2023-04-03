@@ -5,7 +5,7 @@
     "Location": "LA",
     "Outputsizeh": 2160.0,
     "Outputsizew": 3840.0,
-    "Previousdaysofdata": 60,
+    "Previousdaysofdata": 30,
     "Quitproject": false,
     "Render": false,
     "Saveprojectprofile": true
