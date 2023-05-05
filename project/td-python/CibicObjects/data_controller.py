@@ -263,6 +263,7 @@ class DataController:
 	def Run(self, start=datetime(2022, 6, 1), end=datetime(2022, 8, 24), to_bin=False):
 
 		self._Fetch(start, end)
+		self.raw_journals = filter(lambda x: x['journal'] is not None, self.raw_journals)
 		self.ProcessData(self.raw_rides, self.raw_journals)
 		for k, v in self._User_Map.items():
 			v.Match()
@@ -297,6 +298,7 @@ class DataController:
 		
 		self.raw_rides = combined['raw_rides']
 		self.raw_journals = combined['raw_journals']
+		self.raw_journals = filter(lambda x: x['journal'] is not None, self.raw_journals)
 		self.ProcessData(self.raw_rides, self.raw_journals)
 		for k, v in self._User_Map.items():
 			v.Match()

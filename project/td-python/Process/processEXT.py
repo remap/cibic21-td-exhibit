@@ -165,7 +165,7 @@ class Process:
 
     # NOTE Mapbox and Ride Info
     def _get_mapbox_loaded(self:callable):
-            return Lookup.PROCESS.op("base_mapbox/MapboxTD").par.Loaded
+        return Lookup.PROCESS.op("base_mapbox/MapboxTD").par.Loaded
 
     def _rides_by_region(self:callable, region:str) -> list:
         '''Rides filtered by currently selected region
@@ -180,7 +180,7 @@ class Process:
         region_rides = [ride for ride in all_rides if ride.region == region_str]        
         rides_with_flows = [ride for ride in region_rides if ride.Flow.name != None]
         rides_with_journals = [ride for ride in rides_with_flows if ride.Reflection_data != None]
-        
+
         # which list of rides do we output
         output_rides = rides_with_flows
 

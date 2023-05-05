@@ -26,9 +26,6 @@ for /f "tokens=2*" %%a in ('reg query "hkcr\TouchDesigner."%TOUCHVERSION%"\shell
 rem if we are in this part of the script, the TD version has not been found in the registry
 goto TDVERSIONNOTFOUND
 
-
-
-
 :STARTPROJECT
 
 rem construct our run command - removes cmd arg param, concats toefile
