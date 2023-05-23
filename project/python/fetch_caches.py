@@ -20,7 +20,20 @@ def last_day_of_month(any_day):
     return next_month - datetime.timedelta(days=next_month.day)
 
 
-today = datetime.datetime.today()
+def last_7_days(any_day):
+	list_of_last_7_days = []
+	for i in range(7):
+		new_day = any_day - datetime.timedelta(days=i)
+		new_day.replace(tzinfo=datetime.timezone.utc)
+		list_of_last_7_days.append(new_day)
+	return list_of_last_7_days
+
+today = datetime.datetime.now()
+yesterday = today - datetime.timedelta(days=1)
+
+today.replace(tzinfo=datetime.timezone.utc)
+yesterday.replace(tzinfo=datetime.timezone.utc)
+
 
 args = sys.argv[1:]
 if len(args) > 1:
@@ -42,14 +55,13 @@ color_lookup = [
 ]
 
 
-start = today - datetime.timedelta(days=today.weekday())
-end = start + datetime.timedelta(days=6)
-
-startTime = start.replace(tzinfo=datetime.timezone.utc)
-endTime = end.replace(tzinfo=datetime.timezone.utc)
 
 
-f'{startTime.strftime("%Y_%m_%d")}-{endTime.strftime("%Y_%m_%d")}.pickle'
+start_days_to_cache = last_7_days(yesterday)
+end_days_to_cache = last_7_days(today)
 
 DataController = CibicObjects.data_controller.DataController()
-DataController.Run(start=startTime, end=endTime, to_bin=True, path=cache_folder)
+for idx, start_day in enumerate(start_days_to_cache):
+	print('updating cache for ', start_day)
+	end_day = end_days_to_cache[idx]
+	DataController.Run(start=start_day, end=end_day, to_bin=True, path=cache_folder)
